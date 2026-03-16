@@ -10,7 +10,7 @@ import json
 import re
 import sys
 
-TARGET_ACCURACY = 0.9
+TARGET_ACCURACY = 0.99
 
 result = subprocess.run(
     [sys.executable, "src/evaluate.py"],
