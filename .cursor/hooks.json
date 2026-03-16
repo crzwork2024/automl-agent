@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "hooks": {
+    "start": [
+      {
+        "command": "python .cursor/hooks/pre_run_check.py",
+        "description": "Pre-flight check for dataset and dependencies (Start Hook)"
+      }
+    ],
+    "stop": [
+      {
+        "command": "python .cursor/hooks/format_code.py",
+        "description": "Auto-format code using ruff"
+      },
+      {
+        "command": "python .cursor/hooks/security_scan.py",
+        "description": "Static security analysis using bandit"
+      },
+      {
+        "command": "python .cursor/hooks/run_tests.py",
+        "description": "Run pytest to verify code correctness"
+      },
+      {
+        "command": "python .cursor/hooks/train_model.py",
+        "description": "Retrain model with latest code"
+      },
+      {
+        "command": "python .cursor/hooks/check_metrics.py",
+        "description": "Evaluate accuracy and decide if further improvement is needed"
+      },
+      {
+        "command": "python .cursor/hooks/check_model_size.py",
+        "description": "Ensure model size is within resource constraints"
+      },
+      {
+        "command": "python .cursor/hooks/auto_commit.py",
+        "description": "Auto git commit changes"
+      },
+      {
+        "command": "python .cursor/hooks/create_pr.py",
+        "description": "Create GitHub PR when accuracy target is met"
+      }
+    ]
+  }
+}
