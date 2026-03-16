@@ -32,8 +32,29 @@ try:
         sys.exit(0)
 
     subprocess.run(["git", "add", "."], check=True)
+    # 获取 git diff 的简要统计和改变的文件
+    diff_stat = subprocess.run(
+        ["git", "diff", "--cached", "--stat"],
+        capture_output=True, text=True
+    ).stdout.strip()
+    
+    files_changed = subprocess.run(
+        ["git", "diff", "--cached", "--name-only"],
+        capture_output=True, text=True
+    ).stdout.strip().replace('\n', ', ')
+
+    # 构造更详细且固定格式的 commit message
+    commit_msg = f"""AutoML Agent Update [{timestamp}]
+
+Summary of changes:
+Files updated: {files_changed}
+
+Details:
+{diff_stat}
+"""
+
     subprocess.run(
-        ["git", "commit", "-m", f"AI: improve model [{timestamp}]"],
+        ["git", "commit", "-m", commit_msg],
         check=True
     )
     subprocess.run(["git", "push"], check=True)
