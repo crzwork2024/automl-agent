@@ -1,6 +1,7 @@
 import sys
 import os
 import joblib
+from sklearn.model_selection import train_test_split
 
 # 确保在 automl-agent/ 根目录执行时，src/ 可被 import
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
@@ -18,8 +19,9 @@ def train(model_type="random_forest", C=1.0, n_estimators=100):
         n_estimators: 随机森林树数量
     """
     X, y = load_data()
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.3, random_state=42)
     model = build_model(model_type=model_type, C=C, n_estimators=n_estimators)
-    model.fit(X, y)
+    model.fit(X_train, y_train)
     joblib.dump(model, "model.joblib")
     print(f"Training complete | model_type={model_type} C={C} n_estimators={n_estimators}")
 

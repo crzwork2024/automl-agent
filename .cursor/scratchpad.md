@@ -8,7 +8,7 @@ Improve model accuracy automatically using scikit-learn.
 - [x] Accuracy target reached
 
 ## Target Accuracy
-`>= 0.95`
+`>= 0.99`
 
 ## Iteration Log
 
@@ -16,6 +16,7 @@ Improve model accuracy automatically using scikit-learn.
 |-----------|-------|--------|----------|-------|
 | 1 | LogisticRegression | C=1.0 | 0.9167 | baseline |
 | 2 | RandomForestClassifier | n_estimators=100 | 1.0000 | added interaction features and changed to RF |
+| 3 | RandomForestClassifier | n_estimators=100 | 1.0000 | added train_test_split and evaluate on validation set |
 
 ## Agent Notes
 - Try RandomForestClassifier if LogisticRegression accuracy < 0.9
