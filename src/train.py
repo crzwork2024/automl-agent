@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from model import load_data, build_model
 
 
-def train(model_type="logistic", C=1.0, n_estimators=100):
+def train(model_type="random_forest", C=1.0, n_estimators=100):
     """
     训练模型并将其保存到 model.joblib。
 

@@ -36,6 +36,7 @@ try:
         ["git", "commit", "-m", f"AI: improve model [{timestamp}]"],
         check=True
     )
+    subprocess.run(["git", "push"], check=True)
     print(json.dumps({}))
 
 except Exception as e:

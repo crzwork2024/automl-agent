@@ -6,7 +6,10 @@ from sklearn.ensemble import RandomForestClassifier
 def load_data(path="data/sample.csv"):
     """加载训练数据，返回特征矩阵 X 和标签 y"""
     df = pd.read_csv(path)
-    X = df[["x1", "x2"]]
+    df["x1_x2"] = df["x1"] * df["x2"]
+    df["x1_sq"] = df["x1"] ** 2
+    df["x2_sq"] = df["x2"] ** 2
+    X = df[["x1", "x2", "x1_x2", "x1_sq", "x2_sq"]]
     y = df["label"]
     return X, y
 
